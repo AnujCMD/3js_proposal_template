@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine? 💖</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+</head>
+
+<body>
+    <canvas id="bg"></canvas>
+
+    <main id="interaction-container">
+        <div class="glass-panel">
+            <h1 id="question">Will you be my Valentine, Priyasha? 🌹</h1>
+            <div class="buttons">
+                <button id="yesBtn">Yes! 💖</button>
+                <button id="noBtn">No</button>
+            </div>
+            <div id="celebration" class="hidden">
+                <h1>I knew it! ❤️</h1>
+                <p>Can't wait to celebrate with you! 🥰</p>
+
+                <div id="media-gallery">
+                    <h2>Our Beautiful Memories ✨</h2>
+                    <div class="video-container">
+                        <video controls loop>
+                            <source src="data-files/PXL_20250623_045751300.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="initial-memories">
+        <img src="data-files/v1.jpg" class="memory-photo" alt="Memory">
+        <img src="data-files/v2.jpg" class="memory-photo" alt="Memory">
+        <img src="data-files/v3.jpg" class="memory-photo" alt="Memory">
+        <img src="data-files/v4.jpg" class="memory-photo" alt="Memory">
+        <img src="data-files/v5.jpg" class="memory-photo" alt="Memory">
+        <img src="data-files/v6.jpg" class="memory-photo" alt="Memory">
+    </div>
+
+    <div id="celebration-memories" class="hidden">
+        <img src="data-files/Snapchat-1045196026.jpg" class="memory-photo" alt="Snapchat Memory">
+        <img src="data-files/Snapchat-1058604895.jpg" class="memory-photo" alt="Snapchat Memory">
+        <img src="data-files/Snapchat-1069135410.jpg" class="memory-photo" alt="Snapchat Memory">
+        <img src="data-files/Snapchat-1404048924.jpg" class="memory-photo" alt="Snapchat Memory">
+        <img src="data-files/Snapchat-1541994315.jpg" class="memory-photo" alt="Snapchat Memory">
+        <img src="data-files/Snapchat-1573358841.jpg" class="memory-photo" alt="Snapchat Memory">
+        <img src="data-files/Snapchat-1662485097.jpg" class="memory-photo" alt="Snapchat Memory">
+        <img src="data-files/Snapchat-1880911831.jpg" class="memory-photo" alt="Snapchat Memory">
+        <img src="data-files/Snapchat-1992166238.jpg" class="memory-photo" alt="Snapchat Memory">
+        <img src="data-files/Snapchat-509920193.jpg" class="memory-photo" alt="Snapchat Memory">
+        <img src="data-files/Snapchat-547362271.jpg" class="memory-photo" alt="Snapchat Memory">
+        <img src="data-files/Snapchat-714886931.jpg" class="memory-photo" alt="Snapchat Memory">
+        <img src="data-files/Snapchat-84848575.jpg" class="memory-photo" alt="Snapchat Memory">
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

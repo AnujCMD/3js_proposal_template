@@ -1,0 +1,233 @@
+:root {
+    --primary-color: #ff4d6d;
+    --secondary-color: #c9184a;
+    --text-color: #590d22;
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    /* Slightly more opaque for content readability */
+    --glass-border: rgba(255, 255, 255, 0.5);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidden;
+    /* Allow scrolling Y, hide X */
+    overflow-y: auto;
+    /* Enable scrolling for gallery */
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffccd5;
+    /* Fallback */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+body {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+#bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+#interaction-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    /* Align top to allow scrolling down */
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+    pointer-events: none;
+    /* Let clicks pass through to canvas if needed, but we need buttons to be clickable */
+}
+
+.glass-panel {
+    pointer-events: auto;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    text-align: center;
+    max-width: 90%;
+    width: 800px;
+    /* Wider for gallery */
+    transition: transform 0.3s ease;
+    /* Removed float animation to prevent jitter with scrolling/large content */
+    margin-bottom: 50px;
+}
+
+h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    position: relative;
+    /* For absolute positioning of No button if needed */
+    height: 60px;
+    /* Reserve space */
+}
+
+button {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+#yesBtn {
+    background: linear-gradient(45deg, #ff4d6d, #ff8fa3);
+    color: white;
+}
+
+#yesBtn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(255, 77, 109, 0.4);
+}
+
+#noBtn {
+    background: #fff0f3;
+    color: var(--secondary-color);
+    position: relative;
+    /* Change to absolute via JS for running away */
+    transition: all 0.4s ease-out;
+    /* Smooth movement */
+}
+
+.hidden {
+    display: none;
+}
+
+#celebration h1 {
+    font-size: 4rem;
+    color: #a4133c;
+    margin-bottom: 0.5rem;
+}
+
+#celebration p {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    margin-bottom: 2rem;
+}
+
+/* Media Gallery Styles */
+#media-gallery {
+    margin-top: 2rem;
+    opacity: 0;
+    animation: fadeIn 2s ease forwards;
+    animation-delay: 0.5s;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+#media-gallery h2 {
+    font-family: 'Dancing Script', cursive;
+    color: var(--secondary-color);
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.video-container {
+    margin-bottom: 2rem;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: 5px solid white;
+}
+
+video {
+    width: 100%;
+    display: block;
+}
+
+/* Scattered Memories */
+/* Scattered Memories */
+#initial-memories,
+#celebration-memories {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    /* Let clicks pass through empty space */
+    z-index: 5;
+    /* Behind glass panel (which is 10) */
+}
+
+.memory-photo {
+    position: absolute;
+    width: 250px;
+    /* Larger polaroid size */
+    padding: 10px 10px 40px 10px;
+    /* Polaroid bottom padding */
+    background: white;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    transform: scale(0);
+    /* Start hidden/small */
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.8s ease;
+    opacity: 0;
+
+    /* Interaction Styles */
+    cursor: grab;
+    pointer-events: auto;
+    /* Enable interaction on the photo itself */
+    user-select: none;
+    touch-action: none;
+}
+
+.memory-photo:active {
+    cursor: grabbing;
+    z-index: 1000 !important;
+    /* Bring to very front when dragging */
+    transition: none;
+}
+
+.memory-photo.visible {
+    transform: scale(1) rotate(var(--rotation));
+    opacity: 1;
+}
+
+/* Ensure glass panel stays on top of images */
+.glass-panel {
+    position: relative;
+    z-index: 10;
+}
